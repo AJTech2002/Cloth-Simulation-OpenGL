@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "C/C++: g++.exe build active file",
+      "command": "g++",
+      "args": [
+        "-g",
+        "-Wno-attributes",
+        "-std=c++17",
+        "-I./include",
+        "-L./lib",
+        "src/main.cpp",
+        "src/core/shader.cpp",
+        "src/setup/program_setup.cpp",
+        "src/render.cpp",
+        "src/cloth_gen.cpp",
+        "src/core/mesh.cpp",
+        "-lmingw32",
+        "-lopengl32",
+        "-lassimp",
+        "-lglew32",
+        "-lglew32mx",
+        "-lglu32",
+        "-lglfw3dll",
+        "-o",
+        "./test.exe"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "run",
+      "command": "start test.exe"
+    }
+  ]
+}
