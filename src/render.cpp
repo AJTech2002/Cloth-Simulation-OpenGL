@@ -6,7 +6,7 @@
 #include "core/shader.h"
 #include "core/vertex.h"
 #include "cloth_gen.h"
-
+#include "core/sphere.h"
 GLFWwindow *window;
 
 
@@ -55,11 +55,19 @@ void render_window (GLFWwindow* _window)
     
     Shader shader("./src/shaders/vertex.glsl", "./src/shaders/fragment.glsl");
 
+    Sphere sphere;
+    sphere.center = glm::vec3(0.0f, -5.0f, 0.0f);
+    sphere.radius = 3.0f;
+
     std::vector<Vertex> verts;
     std::vector<unsigned int> indices;
     std::vector<Stick> sticks;
-
-    generate_cloth_mesh(20, 20, 1.0f/2.0f, glm::vec3(-5, 3, 0.0f), &shader, verts, indices, sticks);
+    
+    //Orient the cloth looking down
+    glm::mat4 identity(1.0f);
+    identity = glm::rotate(identity, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    generate_cloth_mesh(20, 20, 1.0f/2.0f, glm::vec3(-5, 3, 0.0f), &shader, verts, indices, sticks, identity);
+    
     glLineWidth(1);
     Mesh testCloth(&shader, verts, indices, sticks);
 
@@ -79,7 +87,8 @@ void render_window (GLFWwindow* _window)
         // testCloth.vertices[0].Position = glm::vec3(-5 + glm::sin(glfwGetTime()) * 5, 3, 0.0f);
         
         if (frame > 300) {
-            simulate(&testCloth);
+            
+            simulate(&testCloth, &sphere);
         }
 
         testCloth.tint = glm::vec3(130.0f/255.0f, 220.0f/255.0f, 255.0f/255.0f);
