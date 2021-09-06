@@ -2,7 +2,7 @@
 
 A small cloth simulation in OpenGL, it has the ability to anchor points or fall onto a sphere. These can be defined in code.
 
-![sphere_col](https://user-images.githubusercontent.com/25098044/132191313-b2d9cb1a-b57f-4e46-835a-7373487ceec9.gif)
+![sphere_col_2](https://user-images.githubusercontent.com/25098044/132191679-1693312a-8a5f-4db3-a567-23c400a59dc2.gif)
 
 **Current Features**
 - Gravity
@@ -15,3 +15,7 @@ A small cloth simulation in OpenGL, it has the ability to anchor points or fall 
 - Cloth Cutting
 - Cloth Material Changes
 - IMGUI for Changing Properties
+
+# Buliding & Running
+
+If you have VScode Installed you can simply hit F5 to build & run. You will need GCC with MinGW.
