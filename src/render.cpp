@@ -65,7 +65,7 @@ void render_window (GLFWwindow* _window)
     
     //Orient the cloth looking down
     glm::mat4 identity(1.0f);
-    identity = glm::rotate(identity, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    // identity = glm::rotate(identity, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     generate_cloth_mesh(20, 20, 1.0f/2.0f, glm::vec3(-5, 3, 0.0f), &shader, verts, indices, sticks, identity);
     
     glLineWidth(1);
@@ -86,6 +86,8 @@ void render_window (GLFWwindow* _window)
 
         // testCloth.vertices[0].Position = glm::vec3(-5 + glm::sin(glfwGetTime()) * 5, 3, 0.0f);
         
+        sphere.center = glm::vec3(0.0f, -5.0f, glm::sin(glfwGetTime())*5.0f);
+
         if (frame > 300) {
             
             simulate(&testCloth, &sphere);

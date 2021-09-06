@@ -42,6 +42,11 @@ void generate_cloth_mesh (int sizeX, int sizeY, float gridWidth, glm::vec3 topLe
             // else
             //     v.locked = false;
 
+            if ((i == 0 && c == 0) || (i == sizeX-2 && c == 0))
+                v.locked = true;
+            else
+                v.locked = false;
+
             //Stick Generation from (https://github.com/bailus/Cloth/blob/master/Cloth.cpp)
             bool
                 leftCol = (i == 0),
@@ -64,6 +69,7 @@ void generate_cloth_mesh (int sizeX, int sizeY, float gridWidth, glm::vec3 topLe
             
             // if (!rightCol)
             //     sticks.push_back(Stick(index(i, c, sizeY), index(i+1, c, sizeY), gridWidth));
+
             // if (!topRow && !leftCol)
             //     sticks.push_back(Stick(index(i, c, sizeY), index(i+1, c+1, sizeY), gridWidth));
             
